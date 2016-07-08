@@ -8,7 +8,7 @@
 
 _cla_ is a small javascript image processing library for applying an automatic color level adjustment to an image at the client side . _cla_ may improve the tonal quality of the image ( especially photos with low color range )
 
-Library contains a single function named __adjustColorLevel__ .
+Library contains a single function named __adjustColorLevel__ in a single javascript file . Library is also available as a typescript file . 
 
 
 __adjustColorLevel__ function takes 2 parameters
