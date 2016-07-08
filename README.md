@@ -44,3 +44,9 @@ Image source of the processedImage is encoded as base64 string .
 
 ![image](images/screenshot.jpg)
 
+
+###Security Restrictions
+
+This library uses HTML5 Canvas API . In order to read data from canvas , drawn images must be in the same domain with the html file or image must have a [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS) header . 
+
+
