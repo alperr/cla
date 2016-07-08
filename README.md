@@ -1,7 +1,7 @@
 #cla*
 **[download](http://alpercinar.com/cla/cla.min.js)** ,
 **[github](https://github.com/alperr/cla)** , 
-**[demo](https://github.com/alperr/cla/demo.html)**
+**[demo](http://alpercinar.com/cla/demo.html)**
 
 
 **color-level-adjuster*
