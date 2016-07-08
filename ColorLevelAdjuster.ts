@@ -37,35 +37,88 @@ function adjustColorLevel(rawImage: HTMLImageElement , oncomplete:Function)
 		var input:ImageData = extractRawData(rawImage);
 		var output:ImageData = new ImageData(input.width , input.height);
 
-		var multiplier = 0.0002;
-		var colorDisribution = new Array(256);
+		var multiplier = 0.0001;
+
+		var redStart:number = 0;
+		var redEnd:number = 255;
+		var greenStart:number = 0;
+		var greenEnd:number = 255;
+		var blueStart:number = 0;
+		var blueEnd:number = 255;
+
+		var redDisribution = new Array(256);
+		var greenDisribution = new Array(256);
+		var blueDisribution = new Array(256);
+		
 		for (var i = 0; i < 256; i++)
-			colorDisribution[i] = 0;
+		{
+			redDisribution[i] = 0;
+			greenDisribution[i] = 0;
+			blueDisribution[i] = 0;
+		}
 
 		var size = input.width * input.height * 4;
 		for (var i = 0; i < size; i += 4)
 		{
-			var grayScaleValue = Math.round(input.data[i] * 0.33 + input.data[i + 1] * 0.33 + input.data[i + 2] * 0.34);
-			colorDisribution[grayScaleValue]++;
+			redDisribution[input.data[i]]++;
+			greenDisribution[input.data[i + 1]]++;
+			blueDisribution[input.data[i + 2]]++;
 		}
 
-		var start = 0;
-		var end = 255;
 		var pixelCount = size / 4;
+
+		var redFound = false;
+		var greenFound = false;
+		var blueFound = false;
 
 		for (var i = 0; i < 192; i++)
 		{
-			start = i;
-			if (colorDisribution[i] > pixelCount * multiplier)
-				break;
+			if (!redFound)
+				redStart = i;
+
+			if (!greenFound)
+				greenStart = i;
+
+			if (!blueFound)
+				blueStart = i;
+				
+			if (redDisribution[i] > pixelCount * multiplier)
+				redFound = true;
+
+			if (greenDisribution[i] > pixelCount * multiplier)
+				greenFound = true;
+
+			if (blueDisribution[i] > pixelCount * multiplier)
+				blueFound = true;
 		}
+
+		redFound = false;
+		greenFound = false;
+		blueFound = false;
 
 		for (var i = 255; i > 63; i--)
 		{
-			end = i;
-			if (colorDisribution[i] > pixelCount * multiplier)
-				break;
+			if (!redFound)
+				redEnd = i;
+
+			if (!greenFound)
+				greenEnd = i;
+
+			if (!blueFound)
+				blueEnd = i;
+				
+			if (redDisribution[i] > pixelCount * multiplier)
+				redFound = true;
+
+			if (greenDisribution[i] > pixelCount * multiplier)
+				greenFound = true;
+
+			if (blueDisribution[i] > pixelCount * multiplier)
+				blueFound = true;
 		}
+
+		var start = Math.min(redStart,greenStart,blueStart);
+		var end = Math.max(redEnd,greenEnd,blueEnd);
 
 		var modificationRate = 100 * (start + 255 - end)/255; 
 

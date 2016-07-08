@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CLA - Basic Usage</title>
+	<style type="text/css">
+		div{
+			display: flex;
+    		justify-content: center			
+		}
+		img{	margin: 10px;	}
+
+	</style>
+</head>
+<body>
+
+	<div id='c0'><img id='img0' src="../images/lc0.jpg"></div>
+	<div id='c1'><img id='img1' src="../images/lc1.jpg"></div>
+	<div id='c2'><img id='img2' src="../images/lc2.jpg"></div>
+	<div id='c3'><img id='img3' src="../images/lc3.jpg"></div>
+	<div id='c4'><img id='img4' src="../images/lc4.jpg"></div>
+
+</body>
+<script type="text/javascript" src='cla.min.js'></script>
+<script type="text/javascript">
+
+	function convert(i)
+	{	
+		var rawImage = document.getElementById('img' + i);
+		adjustColorLevel(rawImage , 
+			function(processedImage , modificationRate)
+			{
+				document.getElementById('c'+i).appendChild(processedImage);
+			}
+		);
+	}
+		
+	for (var i = 0; i < 5; i++)
+		convert(i);
+
+</script>
+</html>
