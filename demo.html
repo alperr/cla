@@ -7,11 +7,19 @@
 			display: flex;
     		justify-content: center			
 		}
-		img{	margin: 10px;	}
+		
+		img{	margin: 10px; }
+		
+		span{
+			margin: 10px;
+			width: 40%;
+			text-align: center;
+		}
 
 	</style>
 </head>
 <body>
+<div><span>Original Image</span> <span>Processed Image</span></div>
 
 	<div id='c0'><img id='img0' src="../images/lc0.jpg"></div>
 	<div id='c1'><img id='img1' src="../images/lc1.jpg"></div>
@@ -29,6 +37,7 @@
 		adjustColorLevel(rawImage , 
 			function(processedImage , modificationRate)
 			{
+				console.log('appending ' + i);
 				document.getElementById('c'+i).appendChild(processedImage);
 			}
 		);
