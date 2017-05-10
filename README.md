@@ -1,4 +1,4 @@
-#cla*
+# cla*
 **[download](http://alpercinar.com/cla/cla.min.js)** ,
 **[github](https://github.com/alperr/cla)** , 
 **[demo](http://alpercinar.com/cla/demo.html)**
@@ -40,12 +40,12 @@ modificationRate is a number ranging between 0-100 which shows the amount of mod
 Image source of the processedImage is encoded as base64 string .
 
 
-##Examples
+## Examples
 
 ![image](images/screenshot.jpg)
 
 
-###Security Restrictions
+### Security Restrictions
 
 This library uses HTML5 Canvas API . In order to read data from canvas , drawn images must be in the same domain with the html file or image must have a [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS) header . 
 
